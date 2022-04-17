@@ -1,0 +1,13 @@
+.header__navbar_logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 20px;
+  color: gold;
+  cursor: pointer;
+}
+
+.header__navbar_logo:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}

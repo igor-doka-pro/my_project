@@ -1,0 +1,16 @@
+.btn {
+  outline: none;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
+  color: gold;
+  letter-spacing: 1px;
+  border: 1px solid gold;
+  border-radius: 50%;
+}
+
+.btn:hover {
+  color: green;
+  border: 1px solid green;
+}
