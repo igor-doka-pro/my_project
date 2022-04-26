@@ -1,0 +1,24 @@
+.cards {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14.2px;
+  width: 100%;
+}
+
+.cards__item {
+  display: flex;
+  gap: 20px;
+  width: 425px;
+  height: content;
+  padding: 8px;
+  background-color: #242526;
+}
+
+.cards__item_btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+}

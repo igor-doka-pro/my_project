@@ -1,13 +1,14 @@
 import React from 'react';
 import { AppSearch } from '../components/AppSearch/AppSearch';
-import { Description } from '../components/UI/Description/Description'
 
+const searchStyles = {
+  paddingTop: '90px'
+};
 
-export const Main = () => {
+export const Search = () => {
   return (
     <React.Fragment>
-      <Description />
-      <AppSearch/>
+      <AppSearch style={searchStyles}/>
     </React.Fragment>
   );
 };

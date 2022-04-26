@@ -1,9 +1,10 @@
 .header__navbar_logo {
   display: flex;
+  gap: 20px;
   align-items: center;
   height: 100%;
   margin-left: 20px;
-  color: gold;
+  color: #ffdd00;
   cursor: pointer;
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../button/Button';
-import Logo from '../logo/Logo';
+import { Button } from '../button/Button';
+import { Logo } from '../logo/Logo';
 import cl from './Navbar.module.css';
 
-const Navbar = () => {
-  
+
+export const Navbar = () => {
   return (
     <div className={cl.header__navbar}>
       <Link to='/'>
@@ -18,11 +18,9 @@ const Navbar = () => {
         </Link>
         
         <Link to='/signup'>
-        <Button>Регистрация</Button>
+          <Button>Регистрация</Button>
         </Link>
       </div>
     </div>
   );
 };
-
-export default Navbar;
