@@ -1,0 +1,56 @@
+.card {
+  max-width: min-content;
+}
+
+.name {
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.gender {
+  margin-bottom: 16px;
+}
+
+.gender, .hairColor, .subheader {
+  color: white;
+  font-size: 16px;
+}
+
+.card__detail {
+  display: flex;
+}
+
+.card__base_information {
+  text-align: center;
+}
+
+.card__detail_name {
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card__detail_gender, .card__detail_hairColor {
+  color: white;
+  font-size: 500;
+}
+
+.card__more_information {
+  color:white;
+  margin-left: 20px;
+}
+
+.card__more_information_item {
+  margin-bottom: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  color: #ffdd00;
+}

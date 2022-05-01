@@ -1,0 +1,14 @@
+.card__wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 170px;
+}
+
+
+.card {
+  width: 800px;
+  height: content;
+  padding: 8px;
+  background-color: #242526;
+}
+
