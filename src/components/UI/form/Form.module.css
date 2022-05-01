@@ -1,0 +1,25 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 200px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 500px;
+  height: 400px;
+  background-color: #242526;
+}
+
+.form__label:hover {
+  cursor: pointer;
+}
+
+.form__label_header {
+  color: white;
+}

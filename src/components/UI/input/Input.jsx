@@ -6,14 +6,14 @@ export const Input = (props) => {
   return (
     <input
       className={cl.input}
-      type="text"
+      type={props.type}
       style={props.style}
       id={props.id}
+      name={props.name}
       onChange={props.onChange}
       value={props.value}
       autoComplete='off'
-      autoFocus
-      placeholder='Введите имя персонажа'
+      placeholder={props.placeholder}
     />
   );
 };
