@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Main } from '../pages/Main';
-import { SignIn } from '../pages/SignIn';
-import { SignUp } from '../pages/SignUp';
+import { SignIn } from '../pages/SignIn/SignIn';
+import { SignUp } from '../pages/SignUp/SignUp';
 import { Favorites } from '../pages/Favorites';
 import { History } from '../pages/History';
 import { Error } from '../pages/Error';

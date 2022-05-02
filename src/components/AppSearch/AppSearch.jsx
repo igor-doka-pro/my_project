@@ -27,7 +27,7 @@ export const AppSearch = (props) => {
         <h2>Поиск персонажей сериала</h2>
       </label>
       <div className={cl.wrap}>
-        <Input onChange={handleChange} value={inputValue} style={inputStyles} id='search'>
+        <Input type='text' onChange={handleChange} value={inputValue} style={inputStyles} placeholder='Введите имя персонажа' id='search'>
           {inputValue}
         </Input>
         <Link to={inputValue ? `/search?name=${inputValue}` : ''}>
