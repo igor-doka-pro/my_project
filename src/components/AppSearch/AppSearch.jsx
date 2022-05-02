@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearch } from '../../hooks/useSearch';
 import { Link } from 'react-router-dom';
 import { Input } from '../UI/input/Input';
 import { Button } from '../UI/button/Button';
 import { Cards } from '../UI/Cards/Cards';
 import cl from './AppSearch.module.css';
+import { findMatchCharacters } from '../../utils/requests';
 
 const inputStyles = {
   backgroundColor: '#242526',
@@ -15,12 +16,17 @@ const inputStyles = {
 
 
 export const AppSearch = (props) => { 
-  const [ inputValue, cardsData, handleChange, handleClick, renderCards ] = useSearch();
+  const [initInput, data, dataAll, setDataAll] = useSearch();
+  const [inputValue, setInputValue] = useState(initInput);
 
   useEffect(() => {
-    renderCards();
-  }, []);
+    findMatchCharacters(initInput, setDataAll);
+  }, [data]);
 
+  function handleChange(evt) {
+    setInputValue(evt.target.value);
+  }
+  
   return (
     <div className={cl.search} style={props.style}>
       <label className={cl.search__label} htmlFor="search">
@@ -31,10 +37,15 @@ export const AppSearch = (props) => {
           {inputValue}
         </Input>
         <Link to={inputValue ? `/search?name=${inputValue}` : ''}>
-          <Button onClick={x => handleClick(x)}>Найти</Button>
+          <Button>Найти</Button>
         </Link>
       </div>
-      <Cards cardsData={cardsData}/>
+      
+      {data.length
+        ? <Cards cardsData={data}/>
+        : <Cards cardsData={dataAll}/>
+      }
+      
     </div>
   );
 };

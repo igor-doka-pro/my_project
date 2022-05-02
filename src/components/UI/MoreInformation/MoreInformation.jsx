@@ -1,28 +1,25 @@
 import React from 'react';
-import { Async } from 'react-async';
-import { useLoad } from '../../../hooks/useLoad';
+import { useGetCharacterQuery } from '../../AppSearch/charactersAPI';
+import { useGetId } from '../../../hooks/useGetId';
 import { Card } from '../Card/Card';
 import cl from './MoreInformation.module.css';
 
 
 export const MoreInformation = () => {
-  const load = useLoad();
+  const id = useGetId();
+  const { data, isLoading, error } = useGetCharacterQuery(id);
 
   return (
-    <Async promiseFn={load}>
-    {({ data, error, isLoading }) => {
-      if (isLoading) return "Loading...";
-      if (error) return `Something went wrong: ${error.message}`;
-      if (data)
-        return (
-          <div className={cl.card__wrap}>
-            <div className={cl.card}>
-              <Card characterData={data} detail/>
-            </div>
-          </div>
-        );
-      return null;
-    }}
-  </Async>
-  );
-};
+    <div className={cl.card__wrap}>
+      <div className={cl.card}>
+        {isLoading
+          ? <div style={{color: 'white'}}>Загрузка...</div>
+          : error 
+            ? <div style={{color: 'white'}}>{error.message}</div>
+            : <Card characterData={data} detail/>
+        }
+      </div>
+    </div>
+  )
+     
+}
