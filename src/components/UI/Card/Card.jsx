@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import cl from './Card.module.css';
+import PropTypes from 'prop-types';
 
 
 export const Card = (props) => {  
@@ -8,9 +9,7 @@ export const Card = (props) => {
       { !(props.detail) 
         ? 
         <figure className={cl.card}>
-          <Suspense fallback={<div style={{color: 'white'}}>Загрузка...</div>}> {/* Почему не работает ? */}
-            <img src={props.characterData.image} width={120} height={200} alt={`photo${props.characterData.id}`}/>
-          </Suspense>
+          <img src={props.characterData.image} width={120} height={200} alt={`photo${props.characterData.id}`}/>
           <h3 className={cl.name}>{props.characterData.name}</h3>
           <span className={cl.subheader}>Gender:</span>
           <p className={cl.gender}>{props.characterData.gender}</p>
@@ -19,7 +18,6 @@ export const Card = (props) => {
         </figure>
         :
         <figure className={cl.card__detail}>
-          <Suspense fallback={<div style={{color: 'white'}}>Загрузка...</div>}> {/* Почему не работает ? */}
             <div className={cl.card__base_information}>
               <img src={props.characterData.image} width={240} height={300} alt={`photo${props.characterData.id}`}/>
               <div className={cl.card__detail_name}>{props.characterData.name}</div>
@@ -27,7 +25,7 @@ export const Card = (props) => {
               <span style={{color: 'white'}}>, </span>
               <span className={cl.card__detail_hairColor}>{props.characterData.hairColor}</span>
             </div>
-          </Suspense>
+          
           <div className={cl.card__more_information}>
             <div className={cl.card__more_information_item}><span style={{color: '#0d6efd'}}>First episode: </span>{props.characterData.firstEpisode}</div>
             <div className={cl.card__more_information_item}><span style={{color: '#0d6efd'}}>Voiced by: </span>{props.characterData.voicedBy}</div>
@@ -41,3 +39,8 @@ export const Card = (props) => {
     
   );
 };
+
+
+Card.propTypes = {
+  characterData: PropTypes.object
+}

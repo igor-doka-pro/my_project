@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../button/Button';
 import { Card } from '../Card/Card';
 import cl from './Cards.module.css';
+import PropTypes from 'prop-types';
 
 const buttonStyles = {
   backgroundColor: '#ffdd00',
@@ -29,3 +30,7 @@ export const Cards = ({ cardsData }) => {
     </ul>
   );
 };
+
+Cards.propTypes = {
+  cardsData: PropTypes.array
+}
