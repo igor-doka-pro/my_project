@@ -6,6 +6,7 @@
 
 
 .card {
+  list-style: none;
   width: 800px;
   height: content;
   padding: 8px;

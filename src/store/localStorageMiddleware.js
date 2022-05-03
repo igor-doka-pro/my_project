@@ -11,12 +11,17 @@
   4) Если action приходит со страницы SigUp (идет процесс регистрации),
     то проверяем есть ли такой пользователь и если нет,
     то записываем нового пользователя в LS. После передаем action дальше.
+
+  5) Если action приходит со страницы SigIn (идет процесс обновления истории),
+    то находим в LS пользователя, обновляем историю и
+    забрасываем его обратно в LS. После передаем action дальше.
 */
 
 const actionTypes = {
   signinValidate: "signin/validate",
   signinAuthorize: "signin/authorize",
   signinLogout: "signin/logout",
+  signinAddHistory: "signin/addHistory",
   signupValidate: "signup/validate",
   signupAddUser: "signup/addUser",
   signupLogout: "signup/logout",
@@ -46,6 +51,12 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
       if (key === action.payload.login) {
         user.auth = true;
         localStorage.setItem(action.payload.login, JSON.stringify(user));
+      } else {
+        const anotherUser = JSON.parse(localStorage.getItem(key));
+        if (anotherUser.auth) {
+          delete anotherUser.auth;
+          localStorage.setItem(key, JSON.stringify(anotherUser));
+        }
       }
     }
 
@@ -67,6 +78,19 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
         history: [],
       })
     );
+
+    return next(action);
+  }
+
+  if (action.type === actionTypes.signinAddHistory) {
+    if (!action.payload.login) {
+      return;
+    }
+
+    const user = JSON.parse(localStorage.getItem(action.payload.login));
+
+    user.history.push(action.payload.param);
+    localStorage.setItem(action.payload.login, JSON.stringify(user));
 
     return next(action);
   }

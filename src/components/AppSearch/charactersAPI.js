@@ -15,10 +15,18 @@ export const charactersAPI = createApi({
       query: (id) => `characters/${id}`,
       transformResponse: (responseData) => characterDataAdapter(responseData),
     }),
+    getCharactersByIds: build.query({
+      query: (ids) => `characters/[${ids.toString()}]`,
+      transformResponse: (responseData) => charactersDataAdapter(responseData),
+    }),
   }),
 });
 
-export const { useGetCharactersQuery, useGetCharacterQuery } = charactersAPI;
+export const {
+  useGetCharactersQuery,
+  useGetCharacterQuery,
+  useGetCharactersByIdsQuery,
+} = charactersAPI;
 
 function charactersDataAdapter(charactersData) {
   return charactersData.map((character) => ({

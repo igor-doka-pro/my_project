@@ -6,6 +6,7 @@ const initialState = {
     password: "",
     auth: false,
     online: false,
+    history: [],
   },
   errors: {
     loginErr: false,
@@ -46,7 +47,10 @@ export const signinSlice = createSlice({
       state.user.auth = action.payload.auth;
       state.user.online = action.payload.online;
     },
+    addHistory(state, action) {
+      state.user.history.push(action.payload);
+    },
   },
 });
 
-export const { authorize, validate, logout } = signinSlice.actions;
+export const { authorize, validate, logout, addHistory } = signinSlice.actions;

@@ -38,11 +38,11 @@ export const Navbar = () => {
           </React.Fragment>
           :
           <React.Fragment>
-            <Link to='/favorites'>
+            <Link to={`${userIn.auth ? '/favorites' : '/signin'}`}>
               <Button>Избранное</Button>
             </Link>
 
-            <Link to='/history'>
+            <Link to={`${userIn.auth ? '/history' : '/signin'}`}>
               <Button>История</Button>
             </Link>
 
