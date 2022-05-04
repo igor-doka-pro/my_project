@@ -6,7 +6,8 @@
 
   3) Если action приходит со страницы SigIn (идет процесс авторизации),
     то находим в LS пользователя, ставим на него флаг авторизации и
-    забрасываем его обратно в LS. После передаем action дальше.
+    забрасываем его обратно в LS, а также передаем историю из LS в action.
+    После передаем action дальше.
     
   4) Если action приходит со страницы SigUp (идет процесс регистрации),
     то проверяем есть ли такой пользователь и если нет,
@@ -51,6 +52,11 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
       if (key === action.payload.login) {
         user.auth = true;
         localStorage.setItem(action.payload.login, JSON.stringify(user));
+
+        const history = JSON.parse(
+          localStorage.getItem(action.payload.login)
+        ).history;
+        action.payload.history = history;
       } else {
         const anotherUser = JSON.parse(localStorage.getItem(key));
         if (anotherUser.auth) {

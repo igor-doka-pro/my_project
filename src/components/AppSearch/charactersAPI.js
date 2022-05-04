@@ -29,6 +29,10 @@ export const {
 } = charactersAPI;
 
 function charactersDataAdapter(charactersData) {
+  if (!charactersData) {
+    return [];
+  }
+
   return charactersData.map((character) => ({
     id: character.id,
     name: character.name,

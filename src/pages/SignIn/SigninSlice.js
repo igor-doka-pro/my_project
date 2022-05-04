@@ -26,6 +26,7 @@ export const signinSlice = createSlice({
       state.user.password = action.payload.password;
       state.user.auth = action.payload.auth;
       state.user.online = action.payload.online;
+      state.user.history = action.payload.history;
     },
     validate(state, action) {
       const [errorIn, flag] = [
@@ -46,9 +47,10 @@ export const signinSlice = createSlice({
       state.user.password = action.payload.password;
       state.user.auth = action.payload.auth;
       state.user.online = action.payload.online;
+      state.user.history = [];
     },
     addHistory(state, action) {
-      state.user.history.push(action.payload);
+      state.user.history.push(action.payload.param);
     },
   },
 });
