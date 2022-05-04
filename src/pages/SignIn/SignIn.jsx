@@ -11,10 +11,10 @@ export const SignIn = () => {
 
   return (
     <Form
-    dispatcherUser={authorization}
-    dispatcherErr={validation}
-    page='signin'
-    buttonText='Войти'
+      dispatcherUser={authorization}
+      dispatcherErr={validation}
+      page='signin'
+      buttonText='Войти'
     />
   )
  

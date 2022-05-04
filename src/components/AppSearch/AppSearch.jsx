@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSearch } from '../../hooks/useSearch';
+import { useSelector, useDispatch } from 'react-redux';
+import { addHistory } from '../../pages/SignIn/SigninSlice';
 import { Link } from 'react-router-dom';
 import { Input } from '../UI/input/Input';
 import { Button } from '../UI/button/Button';
@@ -18,14 +20,30 @@ const inputStyles = {
 export const AppSearch = (props) => { 
   const [initInput, data, dataAll, setDataAll] = useSearch();
   const [inputValue, setInputValue] = useState(initInput);
-
-  useEffect(() => {
-    findMatchCharacters(initInput, setDataAll);
-  }, [data]);
+  const userIn = useSelector((state) => state.signin.user);
+  
+  const dispatch = useDispatch();
+  const dispatchSearchQuery = useCallback(
+    (searchQuery) => dispatch(addHistory(searchQuery)),
+    [dispatch]
+  );
 
   function handleChange(evt) {
     setInputValue(evt.target.value);
   }
+
+  function handleClick() {
+    const searchQuery = {
+      param: inputValue,
+      login: userIn.login,
+    };
+
+    dispatchSearchQuery(searchQuery);
+  }
+
+  useEffect(() => {
+    findMatchCharacters(initInput, setDataAll);
+  }, [initInput]);
   
   return (
     <div className={cl.search} style={props.style}>
@@ -37,7 +55,7 @@ export const AppSearch = (props) => {
           {inputValue}
         </Input>
         <Link to={inputValue ? `/search?name=${inputValue}` : ''}>
-          <Button>Найти</Button>
+          <Button onClick={handleClick}>Найти</Button>
         </Link>
       </div>
       

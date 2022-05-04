@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 
 
 export const Button = (props) => {
-  const styles = props.styles ? props.styles : null;
-
   return (
     <React.Fragment>
-       { styles ? (
-        <button onClick={props.onClick} style={styles} className={cl.btn}>{props.children}</button>
+       { props.btnInCard ? (
+        <button onClick={props.onClick} className={cl.btn__in_card} disabled={props.disabled}>{props.children}</button>
       ) : (
         <button onClick={props.onClick} className={cl.btn}>{props.children}</button>
       )}
@@ -18,8 +16,8 @@ export const Button = (props) => {
 };
 
 Button.propTypes = {
-  styles: PropTypes.object,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 }
 
 Button.defaultProps = {
